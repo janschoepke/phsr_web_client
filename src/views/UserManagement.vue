@@ -1,5 +1,8 @@
 <template>
   <div class="animated fadeIn">
+    <div class="row text-right">
+      <router-link to="/general/user-management/add" class="btn btn-info btn-sm">+ Add User</router-link>
+    </div>
     <div class="row">
       <div class="col-xs-12">
         <table class="table table-striped">
