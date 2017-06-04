@@ -7,32 +7,40 @@
             <div class="card-block p-4">
               <h1>Register</h1>
               <p class="text-muted">Create your account</p>
+
+              <div class="card card-inverse card-danger text-xs-center" v-show="errorText">
+                <div class="card-block">
+                  <blockquote class="card-blockquote">
+                    <i class="fa fa-warning fa-lg m-t-2"></i> {{errorText}}
+                  </blockquote>
+                </div>
+              </div>
               <div class="input-group mb-3">
                 <span class="input-group-addon"><i class="icon-user"></i></span>
-                <input type="text" class="form-control" placeholder="Firstname">
+                <input type="text" class="form-control" placeholder="Firstname" v-model="firstname">
               </div>
 
               <div class="input-group mb-3">
                 <span class="input-group-addon"><i class="icon-user"></i></span>
-                <input type="text" class="form-control" placeholder="Lastname">
+                <input type="text" class="form-control" placeholder="Lastname" v-model="lastname">
               </div>
 
               <div class="input-group mb-3">
                 <span class="input-group-addon">@</span>
-                <input type="text" class="form-control" placeholder="Email">
+                <input type="text" class="form-control" placeholder="Email" v-model="email">
               </div>
 
               <div class="input-group mb-3">
                 <span class="input-group-addon"><i class="icon-lock"></i></span>
-                <input type="password" class="form-control" placeholder="Password">
+                <input type="password" class="form-control" placeholder="Password" v-model="password">
               </div>
 
               <div class="input-group mb-4">
                 <span class="input-group-addon"><i class="icon-lock"></i></span>
-                <input type="password" class="form-control" placeholder="Repeat password">
+                <input type="password" class="form-control" placeholder="Repeat password" v-model="password2">
               </div>
 
-              <button type="button" class="btn btn-block btn-success">Create Account</button>
+              <button type="button" class="btn btn-block btn-success" v-on:click="registerUser()" :disabled="submitted">Create Account</button>
             </div>
           </div>
         </div>
@@ -43,6 +51,61 @@
 
 <script>
 export default {
-  name: 'Register'
+  name: 'Register',
+  data: function () {
+    return {
+      firstname: '',
+      lastname: '',
+      email: '',
+      password: '',
+      password2: '',
+      submitted: false,
+      errorText: ''
+    }
+  },
+  methods: {
+    registerUser () {
+      this.submitted = true
+
+      if (!this.firstname || !this.lastname || !this.email || !this.password || !this.password2) {
+        this.errorText = 'Please fill out all the Fields.'
+        this.submitted = false
+        return
+      }
+
+      if (!this.comparePasswords()) {
+          // Error highlight
+        this.errorText = 'The entered passwords are not equal.'
+        this.submitted = false
+        return
+      }
+
+      this.$http.post(
+        'http://localhost:4444/users/register',
+        {
+          firstname: this.firstname,
+          lastname: this.lastname,
+          email: this.email,
+          password: this.password
+        }).then(
+          function success (response) {
+            this.errorText = ''
+            this.$router.push('login')
+          },
+          function fail (response) {
+            var result = JSON.parse(response.bodyText)
+            // TODO: Local String, not out of response.
+            this.errorText = result.message
+            this.submitted = false
+          }
+      )
+    },
+    comparePasswords () {
+      if (this.password === this.password2) {
+        return true
+      }
+      return false
+    }
+  }
 }
 </script>

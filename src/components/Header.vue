@@ -16,7 +16,7 @@
           <span class="d-md-down-none">admin</span>
         </span>
         <div slot="dropdown-menu"class="dropdown-menu dropdown-menu-right">
-          <a class="dropdown-item" href="#"><i class="fa fa-lock"></i> Logout</a>
+          <a class="dropdown-item" v-on:click="logout()"><i class="fa fa-lock"></i> Logout</a>
         </div>
       </dropdown>
     </ul>
@@ -52,6 +52,10 @@ export default {
     asideToggle (e) {
       e.preventDefault()
       document.body.classList.toggle('aside-menu-hidden')
+    },
+    logout () {
+      localStorage.removeItem('token')
+      this.$router.push('/login')
     }
   }
 }
