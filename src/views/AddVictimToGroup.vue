@@ -1,15 +1,11 @@
 <template>
   <div class="animated fadeIn">
     <div class="row text-right">
-      <router-link to="/general/victim-management/add" class="btn btn-info btn-sm">+ Add Victim</router-link>
+      <router-link to="/general/group-management" class="btn btn-info btn-sm">back</router-link>
     </div>
-
     <div class="card">
       <div class="card-header">
-        All Victims
-        <div class="card-actions">
-          <a class="btn-minimize collapsed" data-toggle="collapse" href="#collapseExample" aria-expanded="false" aria-controls="collapseExample"><i class="icon-arrow-down"></i></a>
-        </div>
+        Add Victim(s) to Group
       </div>
       <div class="card-block" id="collapseExample">
         <table class="table table-striped">
@@ -19,7 +15,7 @@
             <th>Lastname</th>
             <th>Email</th>
             <th>Description</th>
-            <th>Actions</th>
+            <th>Add</th>
           </tr>
           </thead>
           <tbody>
@@ -29,23 +25,24 @@
             <td>{{victim.Email}}</td>
             <td>{{victim.Description}}</td>
             <td>
-              <router-link :to="{path: '/general/victim-management/edit/'+victim.Id}" ><i class="fa fa-ban"></i> Edit</router-link>
-              <a href="#" v-on:click="removeVictim(victim)">Del</a>
+              <input type="checkbox" :value="victim.Id" v-model="checked">
             </td>
           </tr>
 
           </tbody>
         </table>
+        <button class="btn btn-info btn-sm" v-on:click="addVictims()">Add Victims to Group</button>
       </div>
     </div>
   </div>
 </template>
 <script>
   export default {
-    name: 'victim-management',
+    name: 'add-victim-to-group',
     data: function () {
       return {
-        victims: []
+        victims: [],
+        checked: []
       }
     },
     created: function () {
@@ -67,27 +64,36 @@
       )
     },
     methods: {
-      removeVictim (victim) {
-        this.$http.post(
-          'http://localhost:4444/victim-management/delete-victim',
-          {
-            token: this.$store.token,
-            victimID: victim.Id
+      addVictims () {
+        var entries = 0
 
-          }).then(
-          function success (response) {
-            var index = this.victims.indexOf(victim)
-            if (index > -1) {
-              this.victims.splice(index, 1)
+        console.log({
+          token: this.$store.token,
+          groupID: parseInt(this.$route.params.id),
+          victimID: this.victims[0].Id
+
+        })
+        for (var i = 0; i < this.checked.length; i++) {
+          this.$http.post(
+            'http://localhost:4444/victim-management/add-victim-to-group',
+            {
+              token: this.$store.token,
+              groupID: this.$route.params.id,
+              victimID: this.checked[i]
+
+            }).then(
+            function success (response) {
+              entries++
+            },
+            function fail (response) {
+              // TODO: Eooro Handling, Local String, not out of response.
+              entries++
             }
-          },
-          function fail (response) {
-            var result = JSON.parse(response.bodyText)
-            // TODO: Local String, not out of response.
-            this.errorText = result.message
-            this.submitted = false
+          )
+          if (entries === this.checked.length - 1) {
+            this.$router.push('/general/group-management')
           }
-        )
+        }
       }
     }
   }

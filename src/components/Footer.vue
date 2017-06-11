@@ -1,6 +1,6 @@
 <template>
   <footer class="app-footer">
-    <a href="#">SocialEngineer</a> &copy; 2017 JS.
+    <a href="#">phsr</a> &copy; 2017 JS.
   </footer>
 </template>
 <script>

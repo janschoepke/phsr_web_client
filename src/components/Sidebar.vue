@@ -15,6 +15,9 @@
         <li class="nav-item">
           <router-link :to="'/general/victim-management'" class="nav-link"><i class="icon-ghost"></i> Victim-Management</router-link>
         </li>
+        <li class="nav-item">
+          <router-link :to="'/general/group-management'" class="nav-link"><i class="icon-ghost"></i> Group-Management</router-link>
+        </li>
         <li class="nav-title">
           Phishing-Mails
         </li>

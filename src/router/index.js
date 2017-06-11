@@ -21,6 +21,10 @@ import Tables from '@/views/components/Tables'
 import UserManagement from '@/views/UserManagement'
 import EditUser from '@/views/EditUser'
 import VictimManagement from '@/views/VictimManagement'
+import EditVictim from '@/views/EditVictim'
+import GroupManagement from '@/views/GroupManagement'
+import EditGroup from '@/views/EditGroup'
+import AddVictimToGroup from '@/views/AddVictimToGroup'
 import PhishingDashboard from '@/views/PhishingDashboard'
 import Mailings from '@/views/Mailings'
 import MalwareSimulator from '@/views/MalwareSimulator'
@@ -140,6 +144,42 @@ export default new Router({
               name: 'Victim Management',
               meta: { auth: true },
               component: VictimManagement
+            },
+            {
+              path: 'victim-management/add',
+              name: 'Add Victim',
+              meta: { auth: true },
+              component: EditVictim
+            },
+            {
+              path: 'victim-management/edit/:id',
+              name: 'Edit Victim',
+              meta: { auth: true },
+              component: EditVictim
+            },
+            {
+              path: 'group-management',
+              name: 'Group Management',
+              meta: { auth: true },
+              component: GroupManagement
+            },
+            {
+              path: 'group-management/add',
+              name: 'Add Group',
+              meta: { auth: true },
+              component: EditGroup
+            },
+            {
+              path: 'group-management/add-victim/:id',
+              name: 'Add Victim to Group',
+              meta: { auth: true },
+              component: AddVictimToGroup
+            },
+            {
+              path: 'group-management/edit/:id',
+              name: 'Edit Group',
+              meta: { auth: true },
+              component: EditGroup
             }
           ]
         },
