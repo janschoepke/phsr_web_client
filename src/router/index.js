@@ -27,6 +27,7 @@ import EditGroup from '@/views/EditGroup'
 import AddVictimToGroup from '@/views/AddVictimToGroup'
 import PhishingDashboard from '@/views/PhishingDashboard'
 import Mailings from '@/views/Mailings'
+import EditMailing from '@/views/EditMailing'
 import MalwareSimulator from '@/views/MalwareSimulator'
 
 // Views - Icons
@@ -202,6 +203,18 @@ export default new Router({
               name: 'Mailings',
               meta: {auth: true},
               component: Mailings
+            },
+            {
+              path: 'mailings/add',
+              name: 'Add Mailing',
+              meta: {auth: true},
+              component: EditMailing
+            },
+            {
+              path: 'mailings/edit/:id',
+              name: 'Edit Mailing',
+              meta: {auth: true},
+              component: EditMailing
             }
           ]
         },
