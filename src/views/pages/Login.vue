@@ -45,43 +45,44 @@
 </template>
 
 <script>
-export default {
-  name: 'Login',
-  data: function () {
-    return {
-      email: '',
-      password: '',
-      errorText: '',
-      submitted: false
-    }
-  },
-  methods: {
-    loginUser () {
-      this.submitted = true
-      if (!this.email || !this.password) {
-        this.errorText = 'Please fill out all the fields.'
-        this.submitted = false
+  import config from '../../config'
+  export default {
+    name: 'Login',
+    data: function () {
+      return {
+        email: '',
+        password: '',
+        errorText: '',
+        submitted: false
       }
-
-      this.$http.post(
-        'http://localhost:4444/users/login',
-        {
-          email: this.email,
-          password: this.password
-        }).then(
-        function success (response) {
-          this.errorText = ''
-          this.$store.token = JSON.parse(response.bodyText).token
-          this.$router.push('dashboard')
-        },
-        function fail (response) {
-          var result = JSON.parse(response.bodyText)
-          // TODO: Local String, not out of response.
-          this.errorText = result.message
+    },
+    methods: {
+      loginUser () {
+        this.submitted = true
+        if (!this.email || !this.password) {
+          this.errorText = 'Please fill out all the fields.'
           this.submitted = false
         }
-      )
+
+        this.$http.post(
+          config.apiServer + '/users/login',
+          {
+            email: this.email,
+            password: this.password
+          }).then(
+          function success (response) {
+            this.errorText = ''
+            this.$store.token = JSON.parse(response.bodyText).token
+            this.$router.push('dashboard')
+          },
+          function fail (response) {
+            var result = JSON.parse(response.bodyText)
+            // TODO: Local String, not out of response.
+            this.errorText = result.message
+            this.submitted = false
+          }
+        )
+      }
     }
   }
-}
 </script>

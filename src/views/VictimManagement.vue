@@ -41,6 +41,7 @@
   </div>
 </template>
 <script>
+  import config from '../config'
   export default {
     name: 'victim-management',
     data: function () {
@@ -50,7 +51,7 @@
     },
     created: function () {
       this.$http.post(
-        'http://localhost:4444/victim-management/get-all-victims',
+        config.apiServer + '/victim-management/get-all-victims',
         {
           token: this.$store.token
 
@@ -69,7 +70,7 @@
     methods: {
       removeVictim (victim) {
         this.$http.post(
-          'http://localhost:4444/victim-management/delete-victim',
+          config.apiServer + '/victim-management/delete-victim',
           {
             token: this.$store.token,
             victimID: victim.Id

@@ -50,6 +50,7 @@
   </div>
 </template>
 <script>
+  import config from '../config'
   export default {
     name: 'group-management',
     data: function () {
@@ -63,7 +64,7 @@
     methods: {
       refreshData () {
         this.$http.post(
-          'http://localhost:4444/victim-management/get-groups',
+          config.apiServer + '/victim-management/get-groups',
           {
             token: this.$store.token
 
@@ -81,7 +82,7 @@
       },
       removeVictim (victim, group) {
         this.$http.post(
-          'http://localhost:4444/victim-management/remove-victim-from-group',
+          config.apiServer + '/victim-management/remove-victim-from-group',
           {
             token: this.$store.token,
             victimID: victim.Id,
@@ -110,7 +111,7 @@
       },
       addVictim (group) {
         this.$http.post(
-          'http://localhost:4444/victim-management/add-victim-to-group',
+          config.apiServer + '/victim-management/add-victim-to-group',
           {
             token: this.$store.token,
             groupID: group.Id,
@@ -130,7 +131,7 @@
       },
       deleteGroup (group) {
         this.$http.post(
-          'http://localhost:4444/victim-management/delete-group',
+          config.apiServer + '/victim-management/delete-group',
           {
             token: this.$store.token,
             groupID: group.Id

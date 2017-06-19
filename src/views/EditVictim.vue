@@ -32,6 +32,7 @@
   </div>
 </template>
 <script>
+  import config from '../config'
   export default {
     name: 'edit-victim',
     data: function () {
@@ -51,7 +52,7 @@
       if (this.currentRoute === 'edit') {
         this.mode = 'Edit'
         this.$http.post(
-          'http://localhost:4444/victim-management/get-victim',
+          config.apiServer + '/victim-management/get-victim',
           {
             token: this.$store.token,
             victimID: this.$route.params.id
@@ -85,7 +86,7 @@
 
         if (this.currentRoute === 'add') {
           this.$http.post(
-            'http://localhost:4444/victim-management/add-victim',
+            config.apiServer + '/victim-management/add-victim',
             {
               token: this.$store.token,
               name: this.firstname,
@@ -106,7 +107,7 @@
           )
         } else if (this.currentRoute === 'edit') {
           this.$http.post(
-            'http://localhost:4444/victim-management/edit-victim',
+            config.apiServer + '/victim-management/edit-victim',
             {
               token: this.$store.token,
               victimID: this.$route.params.id,

@@ -6,6 +6,8 @@ import router from './router'
 import VueResource from 'vue-resource'
 import Vuex from 'vuex'
 
+import config from './config'
+
 function setToken (token) {
   store.token = token
   localStorage.setItem('token', token)
@@ -34,7 +36,7 @@ router.beforeEach((to, from, next) => {
     next({ path: '/login' })
   } else {
     Vue.http.post(
-      'http://localhost:4444/users/authorize',
+      config.apiServer + '/users/authorize',
       {
         token: store.token
       }).then(

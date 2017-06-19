@@ -23,6 +23,7 @@
   </div>
 </template>
 <script>
+  import config from '../config'
   export default {
     name: 'edit-group',
     data: function () {
@@ -40,7 +41,7 @@
       if (this.currentRoute === 'edit') {
         this.mode = 'Edit'
         this.$http.post(
-          'http://localhost:4444/victim-management/get-group',
+          config.apiServer + '/victim-management/get-group',
           {
             token: this.$store.token,
             groupID: this.$route.params.id
@@ -71,7 +72,7 @@
 
         if (this.currentRoute === 'add') {
           this.$http.post(
-            'http://localhost:4444/victim-management/add-group',
+            config.apiServer + '/victim-management/add-group',
             {
               token: this.$store.token,
               name: this.name,
@@ -90,7 +91,7 @@
           )
         } else if (this.currentRoute === 'edit') {
           this.$http.post(
-            'http://localhost:4444/victim-management/edit-group',
+            config.apiServer + '/victim-management/edit-group',
             {
               token: this.$store.token,
               groupID: this.$route.params.id,

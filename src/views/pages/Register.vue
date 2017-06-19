@@ -50,62 +50,63 @@
 </template>
 
 <script>
-export default {
-  name: 'Register',
-  data: function () {
-    return {
-      firstname: '',
-      lastname: '',
-      email: '',
-      password: '',
-      password2: '',
-      submitted: false,
-      errorText: ''
-    }
-  },
-  methods: {
-    registerUser () {
-      this.submitted = true
-
-      if (!this.firstname || !this.lastname || !this.email || !this.password || !this.password2) {
-        this.errorText = 'Please fill out all the Fields.'
-        this.submitted = false
-        return
+  import config from '../../config'
+  export default {
+    name: 'Register',
+    data: function () {
+      return {
+        firstname: '',
+        lastname: '',
+        email: '',
+        password: '',
+        password2: '',
+        submitted: false,
+        errorText: ''
       }
-
-      if (!this.comparePasswords()) {
-          // Error highlight
-        this.errorText = 'The entered passwords are not equal.'
-        this.submitted = false
-        return
-      }
-
-      this.$http.post(
-        'http://localhost:4444/users/register',
-        {
-          firstname: this.firstname,
-          lastname: this.lastname,
-          email: this.email,
-          password: this.password
-        }).then(
-          function success (response) {
-            this.errorText = ''
-            this.$router.push('login')
-          },
-          function fail (response) {
-            var result = JSON.parse(response.bodyText)
-            // TODO: Local String, not out of response.
-            this.errorText = result.message
-            this.submitted = false
-          }
-      )
     },
-    comparePasswords () {
-      if (this.password === this.password2) {
-        return true
+    methods: {
+      registerUser () {
+        this.submitted = true
+
+        if (!this.firstname || !this.lastname || !this.email || !this.password || !this.password2) {
+          this.errorText = 'Please fill out all the Fields.'
+          this.submitted = false
+          return
+        }
+
+        if (!this.comparePasswords()) {
+            // Error highlight
+          this.errorText = 'The entered passwords are not equal.'
+          this.submitted = false
+          return
+        }
+
+        this.$http.post(
+          config.apiServer + '/users/register',
+          {
+            firstname: this.firstname,
+            lastname: this.lastname,
+            email: this.email,
+            password: this.password
+          }).then(
+            function success (response) {
+              this.errorText = ''
+              this.$router.push('login')
+            },
+            function fail (response) {
+              var result = JSON.parse(response.bodyText)
+              // TODO: Local String, not out of response.
+              this.errorText = result.message
+              this.submitted = false
+            }
+        )
+      },
+      comparePasswords () {
+        if (this.password === this.password2) {
+          return true
+        }
+        return false
       }
-      return false
     }
   }
-}
 </script>

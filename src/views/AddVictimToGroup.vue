@@ -37,6 +37,7 @@
   </div>
 </template>
 <script>
+  import config from '../config'
   export default {
     name: 'add-victim-to-group',
     data: function () {
@@ -47,7 +48,7 @@
     },
     created: function () {
       this.$http.post(
-        'http://localhost:4444/victim-management/get-all-victims',
+        config.apiServer + '/victim-management/get-all-victims',
         {
           token: this.$store.token
 
@@ -66,16 +67,9 @@
     methods: {
       addVictims () {
         var entries = 0
-
-        console.log({
-          token: this.$store.token,
-          groupID: parseInt(this.$route.params.id),
-          victimID: this.victims[0].Id
-
-        })
         for (var i = 0; i < this.checked.length; i++) {
           this.$http.post(
-            'http://localhost:4444/victim-management/add-victim-to-group',
+            config.apiServer + '/victim-management/add-victim-to-group',
             {
               token: this.$store.token,
               groupID: this.$route.params.id,
