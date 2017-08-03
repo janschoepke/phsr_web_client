@@ -1,18 +1,15 @@
 <template>
   <div class="animated fadeIn">
-    <div class="row text-right">
-      <router-link to="/general/victim-management/add" class="btn btn-info btn-sm">+ Add Victim</router-link>
+    <div class="button-panel">
+      <router-link to="/general/victim-management/add" class="btn btn-info btn-sm"><i class="fa fa-plus"></i> Add Victim</router-link>
     </div>
 
     <div class="card">
       <div class="card-header">
         All Victims
-        <div class="card-actions">
-          <a class="btn-minimize collapsed" data-toggle="collapse" href="#collapseExample" aria-expanded="false" aria-controls="collapseExample"><i class="icon-arrow-down"></i></a>
-        </div>
       </div>
       <div class="card-block" id="collapseExample">
-        <table class="table table-striped">
+        <table class="table table-striped table-responsive">
           <thead>
           <tr>
             <th>Firstname</th>
@@ -28,9 +25,9 @@
             <td>{{victim.Lastname}}</td>
             <td>{{victim.Email}}</td>
             <td>{{victim.Description}}</td>
-            <td>
-              <router-link :to="{path: '/general/victim-management/edit/'+victim.Id}" ><i class="fa fa-ban"></i> Edit</router-link>
-              <a href="#" v-on:click="removeVictim(victim)">Del</a>
+            <td class="actions">
+              <router-link :to="{path: '/general/victim-management/edit/'+victim.Id}" ><i class="fa fa-pencil"></i></router-link>
+              <a href="#" v-on:click="removeVictim(victim)"><i class="fa fa-trash"></i></a>
             </td>
           </tr>
 

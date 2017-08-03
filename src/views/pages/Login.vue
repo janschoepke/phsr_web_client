@@ -9,6 +9,15 @@
                 <h1>Login</h1>
                 <p class="text-muted">Sign in to your account</p>
                 <form autocomplete="off">
+                  <transition name="fade">
+                    <div class="card card-inverse card-danger text-xs-center" v-if="errorText">
+                      <div class="card-block">
+                        <blockquote class="card-blockquote">
+                          <i class="fa fa-warning"></i> {{errorText}}
+                        </blockquote>
+                      </div>
+                    </div>
+                  </transition>
                   <div class="input-group mb-3">
                     <span class="input-group-addon"><i class="icon-user"></i></span>
                     <input type="email" class="form-control" placeholder="E-Mail" autocomplete="off" v-model="email">
@@ -19,7 +28,10 @@
                   </div>
                   <div class="row">
                     <div class="col-6">
-                      <button type="button" class="btn btn-primary px-4" v-on:click="loginUser()" :disabled="submitted">Login</button>
+                      <button type="button" class="btn btn-primary px-4" v-on:click="loginUser()" :disabled="submitted"  :class="{'submitted': submitted}">
+                        <span class="button-text">Login</span>
+                        <i class="fa fa-gear fa-spin"></i>
+                      </button>
                     </div>
                     <div class="col-6 text-right">
                       <button type="button" class="btn btn-link px-0" disabled="disabled">Forgot password?</button>
@@ -62,6 +74,7 @@
         if (!this.email || !this.password) {
           this.errorText = 'Please fill out all the fields.'
           this.submitted = false
+          return
         }
 
         this.$http.post(
@@ -72,7 +85,10 @@
           }).then(
           function success (response) {
             this.errorText = ''
-            this.$store.token = JSON.parse(response.bodyText).token
+            var result = JSON.parse(response.bodyText)
+            this.$store.token = result.token
+            localStorage.setItem('firstname', result.firstname)
+            localStorage.setItem('lastname', result.lastname)
             this.$router.push('dashboard')
           },
           function fail (response) {

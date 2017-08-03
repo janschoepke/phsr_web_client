@@ -8,13 +8,15 @@
               <h1>Register</h1>
               <p class="text-muted">Create your account</p>
 
-              <div class="card card-inverse card-danger text-xs-center" v-show="errorText">
-                <div class="card-block">
-                  <blockquote class="card-blockquote">
-                    <i class="fa fa-warning fa-lg m-t-2"></i> {{errorText}}
-                  </blockquote>
+              <transition name="fade">
+                <div class="card card-inverse card-danger text-xs-center" v-if="errorText">
+                  <div class="card-block">
+                    <blockquote class="card-blockquote">
+                      <i class="fa fa-warning"></i> {{errorText}}
+                    </blockquote>
+                  </div>
                 </div>
-              </div>
+              </transition>
               <div class="input-group mb-3">
                 <span class="input-group-addon"><i class="icon-user"></i></span>
                 <input type="text" class="form-control" placeholder="Firstname" v-model="firstname">
@@ -40,7 +42,10 @@
                 <input type="password" class="form-control" placeholder="Repeat password" v-model="password2">
               </div>
 
-              <button type="button" class="btn btn-block btn-success" v-on:click="registerUser()" :disabled="submitted">Create Account</button>
+              <button type="button" class="btn btn-block btn-success" v-on:click="registerUser()" :disabled="submitted"  :class="{'submitted': submitted}">
+                <span class="button-text">Create Account</span>
+                <i class="fa fa-gear fa-spin"></i>
+              </button>
             </div>
           </div>
         </div>

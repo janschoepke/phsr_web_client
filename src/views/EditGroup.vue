@@ -1,6 +1,16 @@
 <template>
   <div class="animated fadeIn">
 
+    <transition name="fade">
+      <div class="card card-inverse card-danger text-xs-center" v-if="errorText">
+        <div class="card-block">
+          <blockquote class="card-blockquote">
+            <i class="fa fa-warning"></i> {{errorText}}
+          </blockquote>
+        </div>
+      </div>
+    </transition>
+
     <div class="card">
       <div class="card-header">
         <strong>{{ mode }} Group</strong>
@@ -16,7 +26,10 @@
         </div>
       </div>
       <div class="card-footer">
-        <button type="submit" class="btn btn-sm btn-primary" v-on:click="handleFormSubmit()"><i class="fa fa-dot-circle-o"></i> Submit</button>
+        <button type="button" class="btn btn-sm btn-primary" v-on:click="handleFormSubmit()" :disabled="submitted"  :class="{'submitted': submitted}">
+          <span class="button-text">Submit</span>
+          <i class="fa fa-gear fa-spin"></i>
+        </button>
         <router-link to="/general/group-management" class="btn btn-sm btn-danger"><i class="fa fa-ban"></i> Back</router-link>
       </div>
     </div>

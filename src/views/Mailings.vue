@@ -1,7 +1,7 @@
 <template>
   <div class="animated fadeIn">
-    <div class="row text-right">
-      <router-link to="/phishing/mailings/add" class="btn btn-info btn-sm">+ Add Mailing</router-link>
+    <div class="button-panel">
+      <router-link to="/phishing/mailings/add" class="btn btn-info btn-sm"><i class="fa fa-plus"></i> Add Mailing</router-link>
     </div>
 
     <div class="card">
@@ -9,7 +9,7 @@
         All Mailings
       </div>
       <div class="card-block">
-        <table class="table table-striped">
+        <table class="table table-striped table-responsive">
           <thead>
           <tr>
             <th>Name</th>
@@ -27,9 +27,9 @@
             <td>{{mailing.Headline}}</td>
             <td>{{mailing.Fromname}} ({{mailing.Fromemail}})</td>
             <td>{{mailing.Tracking}}</td>
-            <td>
-              <router-link :to="{path: '/phishing/mailings/edit/'+mailing.Id}" ><i class="fa fa-ban"></i> Edit</router-link>
-              <a href="#" v-on:click="removeMailing(mailing)">Del</a>
+            <td class="actions">
+              <router-link :to="{path: '/phishing/mailings/edit/'+mailing.Id}" ><i class="fa fa-pencil"></i></router-link>
+              <a href="#" v-on:click="removeMailing(mailing)"><i class="fa fa-trash"></i></a>
             </td>
           </tr>
 

@@ -1,25 +1,23 @@
 <template>
   <div class="animated fadeIn">
-    <div class="row text-right">
-      <router-link to="/general/group-management/add" class="btn btn-info btn-sm">+ Add Group</router-link>
+    <div class="button-panel">
+      <router-link to="/general/group-management/add" class="btn btn-info btn-sm"><i class="fa fa-plus"></i> Add Group</router-link>
     </div>
 
     <div class="card" v-for="group in groups">
       <div class="card-header">
         {{group.Group.Name}}
         <div class="card-actions">
-          <router-link :to="{path: '/general/group-management/edit/'+group.Group.Id}" class="btn-minimize collapsed">Edit</router-link>
-          <a class="btn-minimize collapsed" v-on:click="deleteGroup(group.Group)">-</a>
-           <!-- <a class="btn-minimize collapsed" v-on:click="addVictim(group.Group)">+</a> -->
-          <router-link :to="{path: '/general/group-management/add-victim/'+group.Group.Id}" class="btn-minimize collapsed">Add Victim</router-link>
-          <a class="btn-minimize collapsed" data-toggle="collapse" href="#collapseExample" aria-expanded="false" aria-controls="collapseExample"><i class="icon-arrow-down"></i></a>
+          <router-link :to="{path: '/general/group-management/edit/'+group.Group.Id}" class="btn-minimize collapsed"><i class="fa fa-pencil"></i></router-link>
+          <a class="btn-minimize collapsed" v-on:click="deleteGroup(group.Group)"><i class="fa fa-trash"></i></a>
+          <router-link :to="{path: '/general/group-management/add-victim/'+group.Group.Id}" class="btn-minimize collapsed"><i class="fa fa-user-plus"></i></router-link>
         </div>
       </div>
       <div class="card-block" id="collapseExample">
         <p>
           {{group.Group.Description}}
         </p>
-        <table class="table table-striped" v-if="group.Members.length > 0">
+        <table class="table table-striped table-responsive" v-if="group.Members.length > 0">
           <thead>
           <tr>
             <th>Firstname</th>
@@ -37,7 +35,7 @@
             <td>{{victim.Email}}</td>
             <td>{{victim.Description}}</td>
             <td>
-              <a href="#" v-on:click="removeVictim(victim, group.Group)">Del</a>
+              <a href="#" v-on:click="removeVictim(victim, group.Group)"><i class="fa fa-trash"></i></a>
             </td>
           </tr>
           </tbody>
