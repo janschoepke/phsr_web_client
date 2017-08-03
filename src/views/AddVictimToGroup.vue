@@ -1,6 +1,6 @@
 <template>
   <div class="animated fadeIn">
-    <div class="row text-right">
+    <div class="button-panel">
       <router-link to="/general/group-management" class="btn btn-info btn-sm">back</router-link>
     </div>
     <div class="card">
@@ -8,7 +8,7 @@
         Add Victim(s) to Group
       </div>
       <div class="card-block" id="collapseExample">
-        <table class="table table-striped">
+        <table class="table table-striped table-responsive">
           <thead>
           <tr>
             <th>Firstname</th>
@@ -66,28 +66,29 @@
     },
     methods: {
       addVictims () {
-        var entries = 0
-        for (var i = 0; i < this.checked.length; i++) {
+        /* eslint-disable no-unused-vars */
+        var errors = 0
+
+        this.checked.forEach(function (current, index, array) {
           this.$http.post(
             config.apiServer + '/victim-management/add-victim-to-group',
             {
               token: this.$store.token,
               groupID: this.$route.params.id,
-              victimID: this.checked[i]
+              victimID: this.checked[index]
 
             }).then(
             function success (response) {
-              entries++
             },
             function fail (response) {
-              // TODO: Eooro Handling, Local String, not out of response.
-              entries++
+              // TODO: Error Handling, Local String, not out of response.
+              errors++
             }
           )
-          if (entries === this.checked.length - 1) {
+          if (index === array.length - 1) {
             this.$router.push('/general/group-management')
           }
-        }
+        }, this)
       }
     }
   }
