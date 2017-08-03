@@ -8979,3 +8979,6 @@ button.submitted .button-text {
 button.submitted .fa.fa-gear {
   opacity: 1;
   margin-left: 12px; }
+
+.phishing-explaination {
+  margin-top: 30px; }
