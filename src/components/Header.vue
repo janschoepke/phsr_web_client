@@ -1,22 +1,21 @@
 <template>
   <navbar>
     <button class="navbar-toggler mobile-sidebar-toggler d-lg-none" type="button" @click="mobileSidebarToggle">&#9776;</button>
-    <a class="navbar-brand" href="#"></a>
+    <a class="navbar-brand">
+      <span class="highlight">p</span>hsr
+    </a>
     <ul class="nav navbar-nav d-md-down-none">
       <li class="nav-item">
         <a class="nav-link navbar-toggler sidebar-toggler" href="#" @click="sidebarMinimize">&#9776;</a>
       </li>
     </ul>
     <ul class="nav navbar-nav ml-auto">
-      <li class="nav-item d-md-down-none">
-        <a class="nav-link" href="#"><i class="icon-bell"></i><span class="badge badge-pill badge-danger">5</span></a>
-      </li>
       <dropdown size="nav" class="nav-item">
-        <span slot="button">
-          <span class="d-md-down-none">admin</span>
+        <span slot="button"><i class="fa fa-user-secret"></i>
+          <span class="d-md-down-none">{{firstname}} {{lastname}}</span>
         </span>
         <div slot="dropdown-menu"class="dropdown-menu dropdown-menu-right">
-          <a class="dropdown-item" v-on:click="logout()"><i class="fa fa-lock"></i> Logout</a>
+          <a class="dropdown-item" v-on:click="logout()"><i class="fa fa-sign-out"></i> Logout</a>
         </div>
       </dropdown>
     </ul>
@@ -33,10 +32,18 @@ export default {
     navbar,
     dropdown
   },
+  data: function () {
+    return {
+      firstname: '',
+      lastname: ''
+    }
+  },
+  created: function () {
+    this.firstname = localStorage.getItem('firstname')
+    this.lastname = localStorage.getItem('lastname')
+    console.log(this.$store)
+  },
   methods: {
-    click () {
-      // do nothing
-    },
     sidebarToggle (e) {
       e.preventDefault()
       document.body.classList.toggle('sidebar-hidden')
@@ -55,6 +62,8 @@ export default {
     },
     logout () {
       localStorage.removeItem('token')
+      localStorage.removeItem('firstname')
+      localStorage.removeItem('lastname')
       this.$router.push('/login')
     }
   }
