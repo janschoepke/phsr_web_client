@@ -3,5 +3,6 @@
  */
 
 export default {
-  apiServer: 'http://janschoe.hercules.uberspace.de'
+  apiServer: 'http://janschoe.hercules.uberspace.de',
+  phsrId: '0911'
 }
