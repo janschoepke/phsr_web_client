@@ -24,13 +24,36 @@
           <label for="description">Description</label>
           <textarea id="description" rows="9" class="form-control" placeholder="Description" v-model="description"></textarea>
         </div>
-        <div class="form-group">
-          <label for="headline">Headline</label>
-          <input type="text" class="form-control" id="headline" placeholder="Headline" v-model="headline">
-        </div>
-        <div class="form-group">
-          <label for="content">Content</label>
-          <textarea id="content" rows="9" class="form-control" placeholder="Content" v-model="content"></textarea>
+        <div class="row">
+          <div class="col-md-8">
+            <div class="form-group">
+              <label for="headline">Headline</label>
+              <input type="text" class="form-control" id="headline" placeholder="Headline" v-model="headline">
+            </div>
+            <div class="form-group">
+              <label for="content">Content</label>
+              <textarea id="content" rows="12" class="form-control" placeholder="Content" v-model="content"></textarea>
+            </div>
+          </div>
+          <div class="col-md-4">
+            <div class="card card-accent-primary phishing-explaination">
+              <div class="card-header">
+                <i class="fa fa-users"></i> Mail Personalization
+              </div>
+              <div class="card-block">
+                <p>
+                To create a general phishing mailing, enter the header and the e-mail text in the appropriate fields.
+                To create a personalized spear phishing mailing, you can use the following variables in both the header and the e-mail text:
+                </p>
+                <ul>
+                  <li><code>(phsr:firstname)</code>: The victims firstname</li>
+                  <li><code>(phsr:lastname)</code>: The victims lastname</li>
+                  <li><code>(phsr:email)</code>: The victims email address</li>
+                  <li><code>(phsr:salutation|Sir|Madam)</code>: The victims gender-specific salutation (replace "Sir" oder "Madam" with your own salutations)</li>
+                </ul>
+              </div>
+            </div>
+          </div>
         </div>
         <div class="form-group">
           <label for="from-email">From Email</label>
@@ -107,7 +130,7 @@
         content: '',
         from_email: '',
         from_name: '',
-        tracking: '',
+        tracking: false,
         submitted: false,
         errorText: '',
         currentRoute: '',
@@ -117,7 +140,8 @@
         smtpUser: '',
         smtpPassword: '',
         smtpSecure: '',
-        smtpPort: ''
+        smtpPort: '',
+        smtpSecures: {}
       }
     },
     created: function () {
@@ -133,6 +157,7 @@
           }).then(
           function success (response) {
             var currentMailing = JSON.parse(JSON.parse(response.bodyText).mailing)
+            console.log(currentMailing)
             this.name = currentMailing.Name
             this.description = currentMailing.Description
             this.headline = currentMailing.Headline
@@ -140,6 +165,14 @@
             this.from_email = currentMailing.Fromemail
             this.from_name = currentMailing.Fromname
             this.tracking = currentMailing.Tracking
+            if (currentMailing.Issmtp) {
+              this.isSmtp = true
+              this.smtpHost = currentMailing.Smtphost
+              this.smtpUser = currentMailing.Smtpuser
+              this.smtpPassword = currentMailing.Smtppassword
+              this.smtpSecure = currentMailing.Smtpsecure
+              this.smtpPort = currentMailing.Smtpport
+            }
           },
           function fail (response) {
             var result = JSON.parse(response.bodyText)
@@ -181,7 +214,13 @@
             }).then(
             function success (response) {
               this.errorText = ''
-              this.$router.push('/phishing/mailings')
+
+              if (this.tracking) {
+                var mailingID = JSON.parse(response.bodyText).mailingID
+                this.$router.push({path: '/phishing/mailings', query: { tracking: mailingID }})
+              } else {
+                this.$router.push('/phishing/mailings')
+              }
             },
             function fail (response) {
               var result = JSON.parse(response.bodyText)
