@@ -18,8 +18,6 @@ import Modals from '@/views/components/Modals'
 import Switches from '@/views/components/Switches'
 import Tables from '@/views/components/Tables'
 
-import UserManagement from '@/views/UserManagement'
-import EditUser from '@/views/EditUser'
 import VictimManagement from '@/views/VictimManagement'
 import EditVictim from '@/views/EditVictim'
 import GroupManagement from '@/views/GroupManagement'
@@ -122,24 +120,6 @@ export default new Router({
             render (c) { return c('router-view') }
           },
           children: [
-            {
-              path: 'user-management',
-              name: 'User Management',
-              meta: { auth: true },
-              component: UserManagement
-            },
-            {
-              path: 'user-management/add',
-              name: 'Add User',
-              meta: { auth: true },
-              component: EditUser
-            },
-            {
-              path: 'user-management/edit',
-              name: 'Edit User',
-              meta: { auth: true },
-              component: EditUser
-            },
             {
               path: 'victim-management',
               name: 'Victim Management',
