@@ -1,3 +1,4 @@
+@charset "UTF-8";
 /**
  * CoreUI - Open Source Bootstrap Admin Template
  * @version v1.0.0-alpha.6
@@ -8917,3 +8918,64 @@ hr.transparent {
     border-right-color: #f86c6b; }
   *[dir="rtl"] .callout-success {
     border-right-color: #4dbd74; }
+
+@font-face {
+  font-family: 'Circo';
+  src: url("../fonts/Circo.ttf.woff") format("woff"), url("../fonts/Circo.ttf.svg#Circo") format("svg"), url("../fonts/Circo.ttf.eot"), url("../fonts/Circo.eot?#iefix") format("embedded-opentype");
+  font-weight: normal;
+  font-style: normal; }
+
+select {
+  -webkit-appearance: none; }
+
+.margin-right-50 {
+  margin-right: 50px; }
+
+.button-panel {
+  margin-bottom: 20px;
+  width: 100%;
+  text-align: right; }
+
+.actions a {
+  margin-right: 7px; }
+  .actions a:last-child {
+    margin-right: 0; }
+
+.nav-item {
+  cursor: pointer; }
+
+header .navbar-nav {
+  margin-right: 30px; }
+
+.app-header.navbar .navbar-brand {
+  background: none;
+  background-image: none;
+  font-family: 'Circo';
+  color: #222c32; }
+  .app-header.navbar .navbar-brand .highlight {
+    color: #59badd; }
+  @media screen and (max-width: 991px) {
+    .app-header.navbar .navbar-brand {
+      text-align: center; } }
+
+.fade-enter-active, .fade-leave-active {
+  transition: opacity .5s; }
+
+.fade-enter, .fade-leave-to {
+  opacity: 0; }
+
+button .button-text {
+  margin-left: 17px;
+  transition: margin-left 0.2s ease; }
+
+button .fa.fa-gear {
+  opacity: 0;
+  margin-left: 0px;
+  transition: opacity, margin-left 0.2s ease; }
+
+button.submitted .button-text {
+  margin-left: 5px; }
+
+button.submitted .fa.fa-gear {
+  opacity: 1;
+  margin-left: 12px; }

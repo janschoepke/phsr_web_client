@@ -1,1 +1,87 @@
 // Here you can add other styles
+@font-face {
+  font-family: 'Circo';
+  src:  url('../fonts/Circo.ttf.woff') format('woff'),
+  url('../fonts/Circo.ttf.svg#Circo') format('svg'),
+  url('../fonts/Circo.ttf.eot'),
+  url('../fonts/Circo.eot?#iefix') format('embedded-opentype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+select {
+  -webkit-appearance:none;
+}
+
+.margin-right-50 {
+  margin-right: 50px;
+}
+
+.button-panel {
+  margin-bottom: 20px;
+  width: 100%;
+  text-align: right;
+}
+
+.actions{
+  a {
+    margin-right: 7px;
+    &:last-child {
+      margin-right: 0;
+    }
+  }
+}
+
+.nav-item {
+  cursor: pointer;
+}
+
+header {
+  .navbar-nav {
+    margin-right: 30px;
+  }
+}
+
+.app-header.navbar .navbar-brand {
+  background: none;
+  background-image: none;
+  font-family: 'Circo';
+  color: #222c32;
+  .highlight {
+    color: #59badd;
+  }
+  @media screen and (max-width: 991px) {
+    text-align: center;
+  }
+}
+
+.fade-enter-active, .fade-leave-active {
+  transition: opacity .5s
+}
+.fade-enter, .fade-leave-to /* .fade-leave-active below version 2.1.8 */ {
+  opacity: 0
+}
+
+button {
+  .button-text {
+    margin-left: 17px;
+    transition: margin-left 0.2s ease;
+  }
+
+  .fa.fa-gear {
+    opacity: 0;
+    margin-left: 0px;
+    transition: opacity, margin-left 0.2s ease;
+  }
+
+  &.submitted {
+    .button-text {
+      margin-left: 5px;
+    }
+    .fa.fa-gear {
+      opacity: 1;
+      margin-left: 12px;
+    }
+  }
+}
+
