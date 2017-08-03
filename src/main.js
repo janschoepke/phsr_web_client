@@ -4,6 +4,7 @@ import Vue from 'vue'
 import App from './App'
 import router from './router'
 import VueResource from 'vue-resource'
+import VueHighlightJS from 'vue-highlightjs'
 import Vuex from 'vuex'
 
 import config from './config'
@@ -54,6 +55,7 @@ router.beforeEach((to, from, next) => {
 
 Vue.use(Vuex)
 Vue.use(VueResource)
+Vue.use(VueHighlightJS)
 
 const store = new Vuex.Store()
 
