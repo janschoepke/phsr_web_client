@@ -30,7 +30,7 @@
           <router-link :to="'/phishing/mailings'" class="nav-link"><i class="icon-envelope"></i> Mailings</router-link>
         </li>
         <li class="nav-item">
-          <router-link :to="'/phishing/mailings'" class="nav-link"><i class="icon-envelope"></i> Start Attack</router-link>
+          <router-link :to="'/phishing/attacks'" class="nav-link"><i class="icon-energy"></i> Attacks</router-link>
         </li>
         <li class="nav-title">
           Malware-Simulator

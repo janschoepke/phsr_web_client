@@ -27,6 +27,8 @@ import PhishingDashboard from '@/views/PhishingDashboard'
 import Mailings from '@/views/Mailings'
 import EditMailing from '@/views/EditMailing'
 import MalwareSimulator from '@/views/MalwareSimulator'
+import Attacks from '@/views/Attacks'
+import StartAttack from '@/views/StartAttack'
 
 // Views - Icons
 import FontAwesome from '@/views/icons/FontAwesome'
@@ -195,7 +197,20 @@ export default new Router({
               name: 'Edit Mailing',
               meta: {auth: true},
               component: EditMailing
+            },
+            {
+              path: 'attacks',
+              name: 'Phishing Attacks',
+              meta: {auth: true},
+              component: Attacks
+            },
+            {
+              path: 'attacks/start',
+              name: 'Start Phishing Attack',
+              meta: {auth: true},
+              component: StartAttack
             }
+
           ]
         },
         {

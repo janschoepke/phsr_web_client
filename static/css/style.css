@@ -8931,6 +8931,9 @@ select {
 .margin-right-50 {
   margin-right: 50px; }
 
+.margin-top-50 {
+  margin-top: 50px; }
+
 .button-panel {
   margin-bottom: 20px;
   width: 100%;
@@ -8982,3 +8985,15 @@ button.submitted .fa.fa-gear {
 
 .phishing-explaination {
   margin-top: 30px; }
+
+.list-group-item-action:focus {
+  background-color: #ffffff; }
+
+.switch-text-label {
+  float: left;
+  width: 75%;
+  margin-left: 15px; }
+  .switch-text-label:after {
+    clear: both;
+    content: '';
+    display: block; }
