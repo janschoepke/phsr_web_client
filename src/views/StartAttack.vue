@@ -118,21 +118,39 @@
     },
     methods: {
       selectMailing (mailingId) {
-        if (this.selectedMailing === mailingId) {
-          this.selectedMailing = null
-        } else {
-          this.selectedMailing = mailingId
+        if (!this.attackStarted) {
+          if (this.selectedMailing === mailingId) {
+            this.selectedMailing = null
+          } else {
+            this.selectedMailing = mailingId
+          }
         }
       },
       selectGroup (groupId) {
-        if (this.selectedGroup === groupId) {
-          this.selectedGroup = null
-        } else {
-          this.selectedGroup = groupId
+        if (!this.attackStarted) {
+          if (this.selectedGroup === groupId) {
+            this.selectedGroup = null
+          } else {
+            this.selectedGroup = groupId
+          }
         }
       },
       startPhishingAttack () {
-        console.log('GO GO GO!')
+        this.$http.post(
+          config.apiServer + '/phishing/send-mailing-to-group',
+          {
+            token: this.$store.token,
+            groupId: this.selectedGroup,
+            mailingId: this.selectedMailing
+
+          }).then(
+          function success (response) {
+            this.$router.push('/phishing/attacks')
+          },
+          function fail (response) {
+            // TODO: Error Handling.
+          }
+        )
       }
     }
   }

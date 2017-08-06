@@ -38,18 +38,29 @@
           <div class="col-md-4">
             <div class="card card-accent-primary phishing-explaination">
               <div class="card-header">
+                <i class="fa fa-users"></i> Mail Template
+              </div>
+              <div class="card-block">
+                <p>
+                  The input for email content is HTML-ready. feel free to insert your own mail template!
+                </p>
+              </div>
+            </div>
+            <div class="card card-accent-primary phishing-explaination">
+              <div class="card-header">
                 <i class="fa fa-users"></i> Mail Personalization
               </div>
               <div class="card-block">
                 <p>
-                To create a general phishing mailing, enter the header and the e-mail text in the appropriate fields.
-                To create a personalized spear phishing mailing, you can use the following variables in both the header and the e-mail text:
+                To create a general phishing mailing, enter the header and the e-mail content in the appropriate fields.
+                To create a personalized spear phishing mailing, you can use the following variables in both the header and the e-mail content:
                 </p>
                 <ul>
                   <li><code>(phsr:firstname)</code>: The victims firstname</li>
                   <li><code>(phsr:lastname)</code>: The victims lastname</li>
                   <li><code>(phsr:email)</code>: The victims email address</li>
                   <li><code>(phsr:salutation|Sir|Madam)</code>: The victims gender-specific salutation (replace "Sir" oder "Madam" with your own salutations)</li>
+                  <li><code>(phsr:link|click here|http://www.url.com)</code>: Link to phishing website (first parameter is link text, second the link itself. The link will be automatically parametrized to enable website tracking)</li>
                 </ul>
               </div>
             </div>
@@ -156,6 +167,8 @@
 
           }).then(
           function success (response) {
+            console.log(response.bodyText)
+
             var currentMailing = JSON.parse(JSON.parse(response.bodyText).mailing)
             console.log(currentMailing)
             this.name = currentMailing.Name
