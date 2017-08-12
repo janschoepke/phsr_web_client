@@ -27,7 +27,7 @@
               <td>{{mailing.Description}}</td>
               <td>{{mailing.Headline}}</td>
               <td>{{mailing.Fromname}} ({{mailing.Fromemail}})</td>
-              <td><span v-if="mailing.Tracking"><a href="#" v-on:click="setOverlayData(mailing.Id)">enabled</a></span><span v-if="!mailing.Tracking">disabled</span></td>
+              <td><span v-if="mailing.Tracking"><a href="#" v-on:click="setOverlayData(mailing.Id)">Code</a></span><span v-if="!mailing.Tracking">disabled</span></td>
               <td class="actions">
                 <router-link :to="{path: '/phishing/mailings/edit/'+mailing.Id}" ><i class="fa fa-pencil"></i></router-link>
                 <a href="#" v-on:click="removeMailing(mailing)"><i class="fa fa-trash"></i></a>
@@ -38,7 +38,6 @@
           </table>
         </div>
       </div>
-      <button type="button" class="btn btn-primary" @click="trackingModal = true">Launch primary modal</button>
 
     </div>
     <modal title="Onpage Tracking Code" class="modal-primary" large v-model="trackingModal" @ok="trackingModal = false" effect="fade/zoom">
@@ -113,7 +112,7 @@
           '\t};\n\n' +
           '\t(function(p, h, s, r) {\n' +
           '\t\tr=p.createElement(s);r.src=h;p.body.appendChild(r);\n' +
-          '\t})(document, "src/tracking.js", "script");\n'
+          '\t})(document, "PATH_TO_THE/tracking.js", "script");\n'
         console.log(this.currentTrackingOverlay)
         this.trackingModal = true
       },
