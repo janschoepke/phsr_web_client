@@ -75,18 +75,10 @@
           <input type="text" class="form-control" id="from-name" placeholder="From Name" v-model="from_name">
         </div>
         <div class="row">
-          <div class="col-md-6">
+          <div class="col-md-12">
             <label for="smtpSwitch">SMTP Server Connection?</label><br>
             <label class="switch switch-text switch-primary">
               <input type="checkbox" checked="checked" class="switch-input" v-model="isSmtp">
-              <span data-on="On" data-off="Off" class="switch-label"></span>
-              <span class="switch-handle"></span>
-            </label>
-          </div>
-          <div class="col-md-6">
-            <label for="trackingSwitch">Enable Onpage Tracking?</label><br>
-            <label class="switch switch-text switch-primary">
-              <input type="checkbox" checked="checked" class="switch-input" v-model="tracking">
               <span data-on="On" data-off="Off" class="switch-label"></span>
               <span class="switch-handle"></span>
             </label>
@@ -108,12 +100,16 @@
               <input type="password" class="form-control" id="smtpPassword" placeholder="SMTP Password" v-model="smtpPassword">
             </div>
             <div class="form-group">
-              <label for="smtpSecure">SMTP Secure</label>
-              <input type="text" class="form-control" id="smtpSecure" placeholder="SMTP Secure" v-model="smtpSecure">
+              <label class="form-control-label" for="smtpSecure">SMTP Secure</label>
+              <select id="smtpSecure" name="smtpSecure" class="form-control" v-model="smtpSecure">
+                <option v-for="smtpSecure in smtpSecures" :value="smtpSecure.short">{{smtpSecure.name}}</option>
+              </select>
             </div>
             <div class="form-group">
               <label for="smtpPort">SMTP Port</label>
-              <input type="number" class="form-control" id="smtpPort" placeholder="Port" v-model="smtpPort">
+              <select id="smtpSecure" name="smtpSecure" class="form-control" v-model="smtpPort">
+                <option v-for="smtpPort in smtpSecures[smtpSecure].ports" :value="smtpPort.port" :selected="smtpPort.selected">{{smtpPort.port}}</option>
+              </select>
             </div>
           </div>
         </transition>
@@ -141,7 +137,7 @@
         content: '',
         from_email: '',
         from_name: '',
-        tracking: false,
+        tracking: true,
         submitted: false,
         errorText: '',
         currentRoute: '',
@@ -150,9 +146,9 @@
         smtpHost: '',
         smtpUser: '',
         smtpPassword: '',
-        smtpSecure: '',
+        smtpSecure: 'ssl',
         smtpPort: '',
-        smtpSecures: {}
+        smtpSecures: {ssl: {'name': 'SSL', 'short': 'ssl', 'ports': [{port: 465, selected: 'true'}]}, tls: {'name': 'TLS', 'short': 'tls', 'ports': [{port: 587, selected: 'true'}, {port: 25, selected: 'false'}]}}
       }
     },
     created: function () {
@@ -177,7 +173,6 @@
             this.content = currentMailing.Content
             this.from_email = currentMailing.Fromemail
             this.from_name = currentMailing.Fromname
-            this.tracking = currentMailing.Tracking
             if (currentMailing.Issmtp) {
               this.isSmtp = true
               this.smtpHost = currentMailing.Smtphost
