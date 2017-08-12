@@ -27,6 +27,7 @@ function restoreTokenFromLocalStorage () {
 }
 
 router.beforeEach((to, from, next) => {
+  document.title = 'phsr | ' + to.name
   if (!store.token) {
     restoreTokenFromLocalStorage()
   }
