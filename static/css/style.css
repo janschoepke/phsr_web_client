@@ -8997,3 +8997,29 @@ button.submitted .fa.fa-gear {
     clear: both;
     content: '';
     display: block; }
+
+.color-male {
+  color: #63c2de; }
+
+.color-female {
+  color: #F660AB; }
+
+.bg-female {
+  background-color: #F660AB !important; }
+
+.progress.progress-xs {
+  background-color: #b0bec5; }
+
+.bordered-bottom-25 {
+  padding-bottom: 50px;
+  border-bottom: 1px solid #b0bec5; }
+
+.top-25 {
+  margin-top: 25px; }
+
+ul.icons-list li {
+  display: list-item;
+  padding: 0;
+  text-align: left; }
+  ul.icons-list li .value {
+    right: 0; }
