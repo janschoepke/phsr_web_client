@@ -2,18 +2,22 @@
 import { Doughnut } from 'vue-chartjs'
 
 export default Doughnut.extend({
+  props: ['labels', 'colors', 'data'],
   mounted () {
     this.renderChart({
-      labels: ['VueJs', 'EmberJs', 'ReactJs', 'AngularJs'],
+      labels: this.labels,
       datasets: [
         {
           backgroundColor: [
             '#41B883',
             '#E46651',
             '#00D8FF',
+            '#DD1B16',
+            '#DD1B16',
+            '#DD1B16',
             '#DD1B16'
           ],
-          data: [40, 20, 80, 10]
+          data: this.data
         }
       ]
     }, {responsive: true, maintainAspectRatio: false})
