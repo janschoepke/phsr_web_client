@@ -9023,3 +9023,10 @@ ul.icons-list li {
   text-align: left; }
   ul.icons-list li .value {
     right: 0; }
+
+.margin-bottom-25 {
+  margin-bottom: 25px; }
+
+.horizontal-bars.half-height li {
+  height: 25px;
+  line-height: 30px; }
