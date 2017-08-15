@@ -67,6 +67,59 @@ export default Line.extend({
         }
       }
     })
+  },
+  watch: {
+    data: function () {
+      this._chart.destroy()
+      this.renderChart({
+        labels: ['15-20', '21-25', '26-30', '31-35', '36-40', '41-45', '46-50', '51-55', '56-50', '61-65', '66-70'],
+        datasets: [
+          {
+            label: 'Age Distribution',
+            backgroundColor: convertHex(brandInfo, 10),
+            borderColor: brandInfo,
+            pointHoverBackgroundColor: '#fff',
+            borderWidth: 2,
+            data: this.data
+          },
+          {
+            label: 'Mail Openings',
+            backgroundColor: 'transparent',
+            borderColor: brandSuccess,
+            pointHoverBackgroundColor: '#fff',
+            borderWidth: 2,
+            data: this.data2
+          },
+          {
+            label: 'Link Clicks',
+            backgroundColor: 'transparent',
+            borderColor: brandDanger,
+            pointHoverBackgroundColor: '#fff',
+            borderWidth: 2,
+            data: this.data3
+          },
+          {
+            label: 'Conversions',
+            backgroundColor: 'transparent',
+            borderColor: brandWarning,
+            pointHoverBackgroundColor: '#fff',
+            borderWidth: 2,
+            data: this.data4
+          }
+        ]
+      }, {
+        responsive: true,
+        maintainAspectRatio: false,
+        elements: {
+          point: {
+            radius: 0,
+            hitRadius: 10,
+            hoverRadius: 4,
+            hoverBorderWidth: 3
+          }
+        }
+      })
+    }
   }
 })
 </script>
