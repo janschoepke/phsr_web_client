@@ -2,85 +2,6 @@
   <div class="animated fadeIn">
 
     <div class="row">
-      <div class="col-sm-6 col-lg-3">
-        <div class="social-box facebook">
-          <i class="fa fa-facebook"></i>
-          <div class="chart-wrapper">
-            <social-box-chart-example :data="[65, 59, 84, 84, 51, 55, 40]" height="90"/>
-          </div>
-          <ul>
-            <li>
-              <strong>89k</strong>
-              <span>friends</span>
-            </li>
-            <li>
-              <strong>459</strong>
-              <span>feeds</span>
-            </li>
-          </ul>
-        </div><!--/.social-box-->
-      </div><!--/.col-->
-
-      <div class="col-sm-6 col-lg-3">
-        <div class="social-box twitter">
-          <i class="fa fa-twitter"></i>
-          <div class="chart-wrapper">
-            <social-box-chart-example :data="[1, 13, 9, 17, 34, 41, 38]" height="90"/>
-          </div>
-          <ul>
-            <li>
-              <strong>973k</strong>
-              <span>followers</span>
-            </li>
-            <li>
-              <strong>1.792</strong>
-              <span>tweets</span>
-            </li>
-          </ul>
-        </div><!--/.social-box-->
-      </div><!--/.col-->
-
-      <div class="col-sm-6 col-lg-3">
-
-        <div class="social-box linkedin">
-          <i class="fa fa-linkedin"></i>
-          <div class="chart-wrapper">
-            <social-box-chart-example :data="[78, 81, 80, 45, 34, 12, 40]" height="90"/>
-          </div>
-          <ul>
-            <li>
-              <strong>500+</strong>
-              <span>contacts</span>
-            </li>
-            <li>
-              <strong>292</strong>
-              <span>feeds</span>
-            </li>
-          </ul>
-        </div><!--/.social-box-->
-      </div><!--/.col-->
-
-      <div class="col-sm-6 col-lg-3">
-        <div class="social-box google-plus">
-          <i class="fa fa-google-plus"></i>
-          <div class="chart-wrapper">
-            <social-box-chart-example :data="[35, 23, 56, 22, 97, 23, 64]" height="90"/>
-          </div>
-          <ul>
-            <li>
-              <strong>894</strong>
-              <span>followers</span>
-            </li>
-            <li>
-              <strong>92</strong>
-              <span>circles</span>
-            </li>
-          </ul>
-        </div><!--/.social-box-->
-      </div><!--/.col-->
-    </div><!--/.row-->
-
-    <div class="row">
       <div class="col-md-12">
         <div class="card">
           <div class="card-header">
@@ -93,111 +14,130 @@
                   <div class="col-sm-6">
                     <div class="callout callout-info">
                       <small class="text-muted">Victims</small><br>
-                      <strong class="h4">9,123</strong>
+                      <strong class="h4">{{victimStatistics.length}}</strong>
                     </div>
                   </div><!--/.col-->
                   <div class="col-sm-6">
                     <div class="callout callout-danger">
                       <small class="text-muted">Groups</small><br>
-                      <strong class="h4">22,643</strong>
+                      <strong class="h4">{{groupMailingStatistics.groups}}</strong>
                     </div>
                   </div><!--/.col-->
                 </div><!--/.row-->
                 <hr class="mt-0">
-                <ul class="horizontal-bars">
+                <ul class="horizontal-bars half-height">
                   <li>
                     <div class="title">
-                      Monday
+                      15-20 ({{victimStatisticsData['ageDistribution'][0]}})
                     </div>
                     <div class="bars">
                       <div class="progress progress-xs">
-                        <div class="progress-bar bg-info" role="progressbar" style="width: 34%" aria-valuenow="34" aria-valuemin="0" aria-valuemax="100"></div>
-                      </div>
-                      <div class="progress progress-xs">
-                        <div class="progress-bar bg-danger" role="progressbar" style="width: 78%" aria-valuenow="78" aria-valuemin="0" aria-valuemax="100"></div>
+                        <div class="progress-bar bg-danger" role="progressbar" v-bind:style="{width: calculatePercentage(victimStatisticsData['ageDistribution'][0], victimStatistics.length) + '%'}" aria-valuemin="0" aria-valuemax="100"></div>
                       </div>
                     </div>
                   </li>
                   <li>
                     <div class="title">
-                      Tuesday
+                      20-25 ({{victimStatisticsData['ageDistribution'][1]}})
                     </div>
                     <div class="bars">
                       <div class="progress progress-xs">
-                        <div class="progress-bar bg-info" role="progressbar" style="width: 56%" aria-valuenow="56" aria-valuemin="0" aria-valuemax="100"></div>
-                      </div>
-                      <div class="progress progress-xs">
-                        <div class="progress-bar bg-danger" role="progressbar" style="width: 94%" aria-valuenow="94" aria-valuemin="0" aria-valuemax="100"></div>
+                        <div class="progress-bar bg-danger" role="progressbar" v-bind:style="{width: calculatePercentage(victimStatisticsData['ageDistribution'][1], victimStatistics.length) + '%'}" aria-valuemin="0" aria-valuemax="100"></div>
                       </div>
                     </div>
                   </li>
                   <li>
                     <div class="title">
-                      Wednesday
+                      25-30 ({{victimStatisticsData['ageDistribution'][2]}})
                     </div>
                     <div class="bars">
                       <div class="progress progress-xs">
-                        <div class="progress-bar bg-info" role="progressbar" style="width: 12%" aria-valuenow="12" aria-valuemin="0" aria-valuemax="100"></div>
-                      </div>
-                      <div class="progress progress-xs">
-                        <div class="progress-bar bg-danger" role="progressbar" style="width: 67%" aria-valuenow="67" aria-valuemin="0" aria-valuemax="100"></div>
+                        <div class="progress-bar bg-danger" role="progressbar" v-bind:style="{width: calculatePercentage(victimStatisticsData['ageDistribution'][2], victimStatistics.length) + '%'}" aria-valuemin="0" aria-valuemax="100"></div>
                       </div>
                     </div>
                   </li>
                   <li>
                     <div class="title">
-                      Thursday
+                      30-35 ({{victimStatisticsData['ageDistribution'][3]}})
                     </div>
                     <div class="bars">
                       <div class="progress progress-xs">
-                        <div class="progress-bar bg-info" role="progressbar" style="width: 43%" aria-valuenow="43" aria-valuemin="0" aria-valuemax="100"></div>
-                      </div>
-                      <div class="progress progress-xs">
-                        <div class="progress-bar bg-danger" role="progressbar" style="width: 91%" aria-valuenow="91" aria-valuemin="0" aria-valuemax="100"></div>
+                        <div class="progress-bar bg-danger" role="progressbar" v-bind:style="{width: calculatePercentage(victimStatisticsData['ageDistribution'][3], victimStatistics.length) + '%'}" aria-valuemin="0" aria-valuemax="100"></div>
                       </div>
                     </div>
                   </li>
                   <li>
                     <div class="title">
-                      Friday
+                      35-40 ({{victimStatisticsData['ageDistribution'][4]}})
                     </div>
                     <div class="bars">
                       <div class="progress progress-xs">
-                        <div class="progress-bar bg-info" role="progressbar" style="width: 22%" aria-valuenow="22" aria-valuemin="0" aria-valuemax="100"></div>
-                      </div>
-                      <div class="progress progress-xs">
-                        <div class="progress-bar bg-danger" role="progressbar" style="width: 73%" aria-valuenow="73" aria-valuemin="0" aria-valuemax="100"></div>
+                        <div class="progress-bar bg-danger" role="progressbar" v-bind:style="{width: calculatePercentage(victimStatisticsData['ageDistribution'][4], victimStatistics.length) + '%'}" aria-valuemin="0" aria-valuemax="100"></div>
                       </div>
                     </div>
                   </li>
                   <li>
                     <div class="title">
-                      Saturday
+                      40-45 ({{victimStatisticsData['ageDistribution'][5]}})
                     </div>
                     <div class="bars">
                       <div class="progress progress-xs">
-                        <div class="progress-bar bg-info" role="progressbar" style="width: 53%" aria-valuenow="53" aria-valuemin="0" aria-valuemax="100"></div>
-                      </div>
-                      <div class="progress progress-xs">
-                        <div class="progress-bar bg-danger" role="progressbar" style="width: 82%" aria-valuenow="82" aria-valuemin="0" aria-valuemax="100"></div>
+                        <div class="progress-bar bg-danger" role="progressbar" v-bind:style="{width: calculatePercentage(victimStatisticsData['ageDistribution'][5], victimStatistics.length) + '%'}" aria-valuemin="0" aria-valuemax="100"></div>
                       </div>
                     </div>
                   </li>
                   <li>
                     <div class="title">
-                      Sunday
+                      45-50 ({{victimStatisticsData['ageDistribution'][6]}})
                     </div>
                     <div class="bars">
                       <div class="progress progress-xs">
-                        <div class="progress-bar bg-info" role="progressbar" style="width: 9%" aria-valuenow="9" aria-valuemin="0" aria-valuemax="100"></div>
+                        <div class="progress-bar bg-danger" role="progressbar" v-bind:style="{width: calculatePercentage(victimStatisticsData['ageDistribution'][6], victimStatistics.length) + '%'}" aria-valuemin="0" aria-valuemax="100"></div>
                       </div>
+                    </div>
+                  </li>
+                  <li>
+                    <div class="title">
+                      50-55 ({{victimStatisticsData['ageDistribution'][7]}})
+                    </div>
+                    <div class="bars">
                       <div class="progress progress-xs">
-                        <div class="progress-bar bg-danger" role="progressbar" style="width: 69%" aria-valuenow="69" aria-valuemin="0" aria-valuemax="100"></div>
+                        <div class="progress-bar bg-danger" role="progressbar" v-bind:style="{width: calculatePercentage(victimStatisticsData['ageDistribution'][7], victimStatistics.length) + '%'}" aria-valuemin="0" aria-valuemax="100"></div>
+                      </div>
+                    </div>
+                  </li>
+                  <li>
+                    <div class="title">
+                      55-60 ({{victimStatisticsData['ageDistribution'][8]}})
+                    </div>
+                    <div class="bars">
+                      <div class="progress progress-xs">
+                        <div class="progress-bar bg-danger" role="progressbar" v-bind:style="{width: calculatePercentage(victimStatisticsData['ageDistribution'][8], victimStatistics.length) + '%'}" aria-valuemin="0" aria-valuemax="100"></div>
+                      </div>
+                    </div>
+                  </li>
+                  <li>
+                    <div class="title">
+                      60-65 ({{victimStatisticsData['ageDistribution'][9]}})
+                    </div>
+                    <div class="bars">
+                      <div class="progress progress-xs">
+                        <div class="progress-bar bg-danger" role="progressbar" v-bind:style="{width: calculatePercentage(victimStatisticsData['ageDistribution'][9], victimStatistics.length) + '%'}" aria-valuemin="0" aria-valuemax="100"></div>
+                      </div>
+                    </div>
+                  </li>
+                  <li>
+                    <div class="title">
+                      65-70 ({{victimStatisticsData['ageDistribution'][10]}})
+                    </div>
+                    <div class="bars">
+                      <div class="progress progress-xs">
+                        <div class="progress-bar bg-danger" role="progressbar" v-bind:style="{width: calculatePercentage(victimStatisticsData['ageDistribution'][10], victimStatistics.length) + '%'}" aria-valuemin="0" aria-valuemax="100"></div>
                       </div>
                     </div>
                   </li>
                   <li class="legend">
-                    <span class="badge badge-pill badge-info"></span> <small>New clients</small> &nbsp; <span class="badge badge-pill badge-danger"></span> <small>Recurring clients</small>
+                    <span class="badge badge-pill badge-danger"></span> <small>age diversity</small>
                   </li>
                 </ul>
               </div><!--/.col-->
@@ -206,13 +146,13 @@
                   <div class="col-sm-6">
                     <div class="callout callout-warning">
                       <small class="text-muted">Mailings</small><br>
-                      <strong class="h4">78,623</strong>
+                      <strong class="h4">{{groupMailingStatistics.mailings}}</strong>
                     </div>
                   </div><!--/.col-->
                   <div class="col-sm-6">
                     <div class="callout callout-success">
                       <small class="text-muted">Phishing Attacks</small><br>
-                      <strong class="h4">49,123</strong>
+                      <strong class="h4">{{statisticsData['sumMailings']}}</strong>
                     </div>
                   </div><!--/.col-->
                 </div><!--/.row-->
@@ -221,66 +161,50 @@
                   <li>
                     <i class="icon-user"></i>
                     <span class="title">Male</span>
-                    <span class="value">43%</span>
+                    <span class="value">{{victimStatisticsData['male']}} <span class="text-muted small">({{victimStatisticsData['maleRate']}}%)</span></span>
                     <div class="bars">
                       <div class="progress progress-xs">
-                        <div class="progress-bar bg-warning" role="progressbar" style="width: 43%" aria-valuenow="43" aria-valuemin="0" aria-valuemax="100"></div>
+                        <div class="progress-bar bg-warning" role="progressbar" v-bind:style="{width: victimStatisticsData['maleRate'] + '%'}" aria-valuemin="0" aria-valuemax="100"></div>
                       </div>
                     </div>
                   </li>
                   <li>
                     <i class="icon-user-female"></i>
                     <span class="title">Female</span>
-                    <span class="value">37%</span>
+                    <span class="value">{{victimStatisticsData['female']}} <span class="text-muted small">({{victimStatisticsData['femaleRate']}}%)</span></span>
                     <div class="bars">
                       <div class="progress progress-xs">
-                        <div class="progress-bar bg-warning" role="progressbar" style="width: 37%" aria-valuenow="37" aria-valuemin="0" aria-valuemax="100"></div>
+                        <div class="progress-bar bg-warning" role="progressbar" v-bind:style="{width: victimStatisticsData['femaleRate'] + '%'}" aria-valuemin="0" aria-valuemax="100"></div>
                       </div>
                     </div>
                   </li>
                   <li class="divider"></li>
                   <li>
-                    <i class="icon-globe"></i>
-                    <span class="title">Organic Search</span>
-                    <span class="value">191,235 <span class="text-muted small">(56%)</span></span>
+                    <span class="title">Open Rate</span>
+                    <span class="value">{{statisticsData['openings']}} <span class="text-muted small">({{statisticsData['openingRate']}}%)</span></span>
                     <div class="bars">
                       <div class="progress progress-xs">
-                        <div class="progress-bar bg-success" role="progressbar" style="width: 56%" aria-valuenow="56" aria-valuemin="0" aria-valuemax="100"></div>
+                        <div class="progress-bar bg-success" role="progressbar" v-bind:style="{width: statisticsData['openingRate'] + '%'}" aria-valuemin="0" aria-valuemax="100"></div>
                       </div>
                     </div>
                   </li>
                   <li>
-                    <i class="icon-social-facebook"></i>
-                    <span class="title">Facebook</span>
-                    <span class="value">51,223 <span class="text-muted small">(15%)</span></span>
+                    <span class="title">Click Rate</span>
+                    <span class="value">{{statisticsData['clicks']}} <span class="text-muted small">({{statisticsData['clickRate']}}%)</span></span>
                     <div class="bars">
                       <div class="progress progress-xs">
-                        <div class="progress-bar bg-success" role="progressbar" style="width: 15%" aria-valuenow="15" aria-valuemin="0" aria-valuemax="100"></div>
+                        <div class="progress-bar bg-success" role="progressbar" v-bind:style="{width: statisticsData['clickRate'] + '%'}" aria-valuemin="0" aria-valuemax="100"></div>
                       </div>
                     </div>
                   </li>
                   <li>
-                    <i class="icon-social-twitter"></i>
-                    <span class="title">Twitter</span>
-                    <span class="value">37,564 <span class="text-muted small">(11%)</span></span>
+                    <span class="title">Conversion Rate</span>
+                    <span class="value">{{statisticsData['conversions']}} <span class="text-muted small">({{statisticsData['conversionRate']}}%)</span></span>
                     <div class="bars">
                       <div class="progress progress-xs">
-                        <div class="progress-bar bg-success" role="progressbar" style="width: 11%" aria-valuenow="11" aria-valuemin="0" aria-valuemax="100"></div>
+                        <div class="progress-bar bg-success" role="progressbar" v-bind:style="{width: statisticsData['conversionRate'] + '%'}" aria-valuemin="0" aria-valuemax="100"></div>
                       </div>
                     </div>
-                  </li>
-                  <li>
-                    <i class="icon-social-linkedin"></i>
-                    <span class="title">LinkedIn</span>
-                    <span class="value">27,319 <span class="text-muted small">(8%)</span></span>
-                    <div class="bars">
-                      <div class="progress progress-xs">
-                        <div class="progress-bar bg-success" role="progressbar" style="width: 8%" aria-valuenow="8" aria-valuemin="0" aria-valuemax="100"></div>
-                      </div>
-                    </div>
-                  </li>
-                  <li class="divider text-center">
-                    <button type="button" class="btn btn-sm btn-link text-muted" data-toggle="tooltip" data-placement="top" title="" data-original-title="show more"><i class="icon-options"></i></button>
                   </li>
                 </ul>
               </div><!--/.col-->
@@ -288,13 +212,13 @@
                 <div class="row">
                   <div class="col-sm-6">
                     <div class="callout">
-                      <small class="text-muted">Malware</small><br>
-                      <strong class="h4">23%</strong>
+                      <small class="text-muted">Unique Phishing Victims</small><br>
+                      <strong class="h4"> {{statisticsData['uniqueUsers']}}</strong>
                     </div>
                   </div><!--/.col-->
                   <div class="col-sm-6">
                     <div class="callout callout-primary">
-                      <small class="text-muted">Bounce Rate</small><br>
+                      <small class="text-muted">Malware</small><br>
                       <strong class="h4">5%</strong>
                     </div>
                   </div><!--/.col-->
@@ -413,6 +337,7 @@
 </template>
 
 <script>
+import config from '../config'
 import CardLine1ChartExample from './dashboard/CardLine1ChartExample'
 import CardLine2ChartExample from './dashboard/CardLine2ChartExample'
 import CardLine3ChartExample from './dashboard/CardLine3ChartExample'
@@ -432,6 +357,171 @@ export default {
     MainChartExample,
     SocialBoxChartExample,
     dropdown
+  },
+  data: function () {
+    return {
+      statistics: [],
+      statisticsData: [],
+      victimStatistics: [],
+      victimStatisticsData: [],
+      groupMailingStatistics: []
+    }
+  },
+  created: function () {
+    this.$http.post(
+      config.apiServer + '/phishing/get-all-statistics',
+      {
+        token: this.$store.token
+
+      }).then(
+      function success (response) {
+        this.statistics = JSON.parse(JSON.parse(response.bodyText).statistics)
+        this.calculateStatisticsData()
+      },
+      function fail (response) {
+        // var result = JSON.parse(response.bodyText)
+      }
+    )
+
+    this.$http.post(
+      config.apiServer + '/phishing/get-victim-statistics',
+      {
+        token: this.$store.token
+
+      }).then(
+      function success (response) {
+        this.victimStatistics = JSON.parse(JSON.parse(response.bodyText).statistics)
+        console.log(this.victimStatistics)
+        this.calculateVictimStatisticsData()
+      },
+      function fail (response) {
+        // var result = JSON.parse(response.bodyText)
+      }
+    )
+
+    this.$http.post(
+      config.apiServer + '/phishing/get-group-mailing-statistics',
+      {
+        token: this.$store.token
+
+      }).then(
+      function success (response) {
+        this.groupMailingStatistics = JSON.parse(JSON.parse(response.bodyText).statistics)
+        console.log(this.groupMailingStatistics)
+      },
+      function fail (response) {
+        // var result = JSON.parse(response.bodyText)
+      }
+    )
+  },
+  methods: {
+    calculateStatisticsData () {
+      var uniqueUsers = this.statistics.length
+      var sumMailings = 0
+      var tempOpenings = 0
+      var tempClicks = 0
+      var tempConversions = 0
+
+      this.statistics.forEach(function (current) {
+        current.VictimMailingss.forEach(function (mailing) {
+          sumMailings++
+          tempOpenings += mailing.Opened
+          tempClicks += mailing.Clicked
+          tempConversions += mailing.Conversioned
+        })
+      })
+
+      var tempStatisticsData = {}
+      tempStatisticsData['uniqueUsers'] = uniqueUsers
+      tempStatisticsData['sumMailings'] = sumMailings
+      tempStatisticsData['openings'] = tempOpenings
+      tempStatisticsData['clicks'] = tempClicks
+      tempStatisticsData['conversions'] = tempConversions
+      tempStatisticsData['openingRate'] = this.calculatePercentage(tempOpenings, sumMailings).toFixed(2)
+      tempStatisticsData['clickRate'] = this.calculatePercentage(tempClicks, sumMailings).toFixed(2)
+      tempStatisticsData['conversionRate'] = this.calculatePercentage(tempConversions, sumMailings).toFixed(2)
+      this.statisticsData = tempStatisticsData
+    },
+    calculateVictimStatisticsData () {
+      var tempSum = this.victimStatistics.length
+      var tempMale = 0
+      var tempFemale = 0
+      var tempAgeDistribution = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+      var self = this
+
+      this.victimStatistics.forEach(function (current) {
+        if (current.Gender) {
+          tempMale++
+        } else {
+          tempFemale++
+        }
+        var age = self.getAge(current.Birthday)
+        switch (true) {
+          case (age >= 15 && age <= 20):
+            tempAgeDistribution[0]++
+            break
+          case (age > 20 && age <= 25):
+            tempAgeDistribution[1]++
+            break
+          case (age > 25 && age <= 30):
+            tempAgeDistribution[2]++
+            break
+          case (age > 30 && age <= 35):
+            tempAgeDistribution[3]++
+            break
+          case (age > 35 && age <= 40):
+            tempAgeDistribution[4]++
+            break
+          case (age > 40 && age <= 45):
+            tempAgeDistribution[5]++
+            break
+          case (age > 45 && age <= 50):
+            tempAgeDistribution[6]++
+            break
+          case (age > 50 && age <= 55):
+            tempAgeDistribution[7]++
+            break
+          case (age > 55 && age <= 60):
+            tempAgeDistribution[8]++
+            break
+          case (age > 60 && age <= 65):
+            tempAgeDistribution[9]++
+            break
+          case (age > 65 && age <= 70):
+            tempAgeDistribution[10]++
+            break
+          case (age > 70 && age <= 75):
+            tempAgeDistribution[11]++
+            break
+          default:
+            break
+        }
+      })
+
+      var tempVictimStatisticsData = []
+      tempVictimStatisticsData['male'] = tempMale
+      tempVictimStatisticsData['female'] = tempFemale
+      tempVictimStatisticsData['ageDistribution'] = tempAgeDistribution
+      tempVictimStatisticsData['maleRate'] = this.calculatePercentage(tempMale, tempSum).toFixed(2)
+      tempVictimStatisticsData['femaleRate'] = this.calculatePercentage(tempFemale, tempSum).toFixed(2)
+      console.log('STATE:')
+      console.log(tempVictimStatisticsData)
+      this.victimStatisticsData = tempVictimStatisticsData
+    },
+    calculatePercentage (number1, number2) {
+      var percentage = (number1 / number2) * 100
+      return percentage
+    },
+    getAge (dateString) {
+      var today = new Date()
+      var birthDate = new Date(dateString)
+      var age = today.getFullYear() - birthDate.getFullYear()
+      var m = today.getMonth() - birthDate.getMonth()
+      if (m < 0 || (m === 0 && today.getDate() < birthDate.getDate())) {
+        age--
+      }
+      return age
+    }
   }
 }
 </script>
