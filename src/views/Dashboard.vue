@@ -218,115 +218,16 @@
                   </div><!--/.col-->
                   <div class="col-sm-6">
                     <div class="callout callout-primary">
-                      <small class="text-muted">Malware</small><br>
-                      <strong class="h4">5%</strong>
+                      <small class="text-muted">Malware Campaigns</small><br>
+                      <strong class="h4">{{malwareStatistics.length}}</strong>
                     </div>
                   </div><!--/.col-->
                 </div><!--/.row-->
                 <hr class="mt-0">
-                <ul class="icons-list">
-                  <li>
-                    <i class="icon-screen-desktop bg-primary"></i>
-                    <div class="desc">
-                      <div class="title">iMac 4k</div>
-                      <small>Lorem ipsum dolor sit amet</small>
-                    </div>
-                    <div class="value">
-                      <div class="small text-muted">Sold this week</div>
-                      <strong>1.924</strong>
-                    </div>
-                    <div class="actions">
-                      <button type="button" class="btn btn-link text-muted"><i class="icon-settings"></i></button>
-                    </div>
-                  </li>
-                  <li>
-                    <i class="icon-screen-smartphone bg-info"></i>
-                    <div class="desc">
-                      <div class="title">Samsung Galaxy Edge</div>
-                      <small>Lorem ipsum dolor sit amet</small>
-                    </div>
-                    <div class="value">
-                      <div class="small text-muted">Sold this week</div>
-                      <strong>1.224</strong>
-                    </div>
-                    <div class="actions">
-                      <button type="button" class="btn btn-link text-muted"><i class="icon-settings"></i></button>
-                    </div>
-                  </li>
-                  <li>
-                    <i class="icon-screen-smartphone bg-warning"></i>
-                    <div class="desc">
-                      <div class="title">iPhone 6S</div>
-                      <small>Lorem ipsum dolor sit amet</small>
-                    </div>
-                    <div class="value">
-                      <div class="small text-muted">Sold this week</div>
-                      <strong>1.163</strong>
-                    </div>
-                    <div class="actions">
-                      <button type="button" class="btn btn-link text-muted"><i class="icon-settings"></i></button>
-                    </div>
-                  </li>
-                  <li>
-                    <i class="icon-user bg-danger"></i>
-                    <div class="desc">
-                      <div class="title">Premium accounts</div>
-                      <small>Lorem ipsum dolor sit amet</small>
-                    </div>
-                    <div class="value">
-                      <div class="small text-muted">Sold this week</div>
-                      <strong>928</strong>
-                    </div>
-                    <div class="actions">
-                      <button type="button" class="btn btn-link text-muted"><i class="icon-settings"></i></button>
-                    </div>
-                  </li>
-                  <li>
-                    <i class="icon-social-spotify bg-success"></i>
-                    <div class="desc">
-                      <div class="title">Spotify Subscriptions</div>
-                      <small>Lorem ipsum dolor sit amet</small>
-                    </div>
-                    <div class="value">
-                      <div class="small text-muted">Sold this week</div>
-                      <strong>893</strong>
-                    </div>
-                    <div class="actions">
-                      <button type="button" class="btn btn-link text-muted"><i class="icon-settings"></i></button>
-                    </div>
-                  </li>
-                  <li>
-                    <i class="icon-cloud-download bg-danger"></i>
-                    <div class="desc">
-                      <div class="title">Ebook</div>
-                      <small>Lorem ipsum dolor sit amet</small>
-                    </div>
-                    <div class="value">
-                      <div class="small text-muted">Downloads</div>
-                      <strong>121.924</strong>
-                    </div>
-                    <div class="actions">
-                      <button type="button" class="btn btn-link text-muted"><i class="icon-settings"></i></button>
-                    </div>
-                  </li>
-                  <li>
-                    <i class="icon-camera bg-warning"></i>
-                    <div class="desc">
-                      <div class="title">Photos</div>
-                      <small>Lorem ipsum dolor sit amet</small>
-                    </div>
-                    <div class="value">
-                      <div class="small text-muted">Uploaded</div>
-                      <strong>12.125</strong>
-                    </div>
-                    <div class="actions">
-                      <button type="button" class="btn btn-link text-muted"><i class="icon-settings"></i></button>
-                    </div>
-                  </li>
-                  <li class="divider text-center">
-                    <button type="button" class="btn btn-sm btn-link text-muted" data-toggle="tooltip" data-placement="top" title="show more"><i class="icon-options"></i></button>
-                  </li>
-                </ul>
+                <h3>About phsr</h3>
+                <p>
+                  Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.
+                </p>
               </div><!--/.col-->
             </div><!--/.row-->
           </div>
@@ -364,7 +265,8 @@ export default {
       statisticsData: [],
       victimStatistics: [],
       victimStatisticsData: [],
-      groupMailingStatistics: []
+      groupMailingStatistics: [],
+      malwareStatistics: []
     }
   },
   created: function () {
@@ -391,7 +293,6 @@ export default {
       }).then(
       function success (response) {
         this.victimStatistics = JSON.parse(JSON.parse(response.bodyText).statistics)
-        console.log(this.victimStatistics)
         this.calculateVictimStatisticsData()
       },
       function fail (response) {
@@ -407,7 +308,20 @@ export default {
       }).then(
       function success (response) {
         this.groupMailingStatistics = JSON.parse(JSON.parse(response.bodyText).statistics)
-        console.log(this.groupMailingStatistics)
+      },
+      function fail (response) {
+        // var result = JSON.parse(response.bodyText)
+      }
+    )
+
+    this.$http.post(
+      config.apiServer + '/mware/get-malware-statistics',
+      {
+        token: this.$store.token
+
+      }).then(
+      function success (response) {
+        this.malwareStatistics = JSON.parse(response.bodyText).malwareStatistics
       },
       function fail (response) {
         // var result = JSON.parse(response.bodyText)
@@ -504,11 +418,10 @@ export default {
       tempVictimStatisticsData['ageDistribution'] = tempAgeDistribution
       tempVictimStatisticsData['maleRate'] = this.calculatePercentage(tempMale, tempSum).toFixed(2)
       tempVictimStatisticsData['femaleRate'] = this.calculatePercentage(tempFemale, tempSum).toFixed(2)
-      console.log('STATE:')
-      console.log(tempVictimStatisticsData)
       this.victimStatisticsData = tempVictimStatisticsData
     },
     calculatePercentage (number1, number2) {
+      if (!number2 || number2 === 0) return 0
       var percentage = (number1 / number2) * 100
       return percentage
     },

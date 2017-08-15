@@ -41,7 +41,6 @@ export default {
   created: function () {
     this.firstname = localStorage.getItem('firstname')
     this.lastname = localStorage.getItem('lastname')
-    console.log(this.$store)
   },
   methods: {
     sidebarToggle (e) {

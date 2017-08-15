@@ -163,10 +163,7 @@
 
           }).then(
           function success (response) {
-            console.log(response.bodyText)
-
             var currentMailing = JSON.parse(JSON.parse(response.bodyText).mailing)
-            console.log(currentMailing)
             this.name = currentMailing.Name
             this.description = currentMailing.Description
             this.headline = currentMailing.Headline

@@ -188,7 +188,6 @@
         }).then(
         function success (response) {
           this.sentMailings = JSON.parse(JSON.parse(response.bodyText).mailings)
-          console.log(this.sentMailings)
           this.calculateMailingData()
         },
         function fail (response) {

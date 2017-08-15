@@ -113,7 +113,6 @@
           '\t(function(p, h, s, r) {\n' +
           '\t\tr=p.createElement(s);r.src=h;p.body.appendChild(r);\n' +
           '\t})(document, "PATH_TO_THE/tracking.js", "script");\n'
-        console.log(this.currentTrackingOverlay)
         this.trackingModal = true
       },
       removeMailing (mailing) {

@@ -108,11 +108,9 @@
           if (JSON.parse(JSON.parse(response.bodyText).allGroups).length > 0) {
             this.groups = JSON.parse(JSON.parse(response.bodyText).allGroups)
           }
-          console.log(this.groups)
         },
         function fail (response) {
           var result = JSON.parse(response.bodyText)
-          console.log(result)
         }
       )
     },
