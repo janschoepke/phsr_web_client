@@ -110,7 +110,7 @@
           }
         },
         function fail (response) {
-          var result = JSON.parse(response.bodyText)
+          // var result = JSON.parse(response.bodyText)
         }
       )
     },
